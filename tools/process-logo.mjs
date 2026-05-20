@@ -76,8 +76,8 @@ async function main() {
   // Brand palette from src/styles.css (:root):
   // --brand-teal: oklch(0.44 0.14 245);
   // --brand-cyan: oklch(0.72 0.13 225);
-  const brandTeal = oklchToSrgb({ L: 0.44, C: 0.14, h: 245 });
-  const brandCyan = oklchToSrgb({ L: 0.72, C: 0.13, h: 225 });
+  const brandTeal = oklchToSrgb({ L: 0.48, C: 0.12, h: 200 });
+  const brandCyan = oklchToSrgb({ L: 0.74, C: 0.11, h: 195 });
 
   // RGBA in Uint8.
   for (let i = 0; i < data.length; i += 4) {

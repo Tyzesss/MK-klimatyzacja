@@ -7,11 +7,10 @@ import {
   Mail,
   Clock,
   ShieldCheck,
-  Sparkles,
-  Car,
-  Gauge,
-  Droplets,
-  CheckCircle2,
+  Home,
+  Wind,
+  Thermometer,
+  Building2,
   ArrowRight,
   Menu,
   X,
@@ -25,37 +24,37 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "M&K – Serwis klimatyzacji samochodowej Wrocław (stacjonarnie)" },
+      { title: "Mefcold – Klimatyzacja domowa Oława | Montaż i serwis" },
       {
         name: "description",
         content:
-          "Serwis klimatyzacji samochodowej we Wrocławiu. Nabijanie, odgrzybianie, diagnostyka i test szczelności. Zapraszamy stacjonarnie — Parking Kaufland, Sieradzka 7.",
+          "Montaż i serwis klimatyzacji domowej oraz biurowej w Oławie i okolicach. Dobór urządzeń, wycena, instalacja split i multi-split. Zadzwoń: 782 241 188.",
       },
-      { property: "og:title", content: "M&K – Serwis klimatyzacji samochodowej Wrocław" },
+      { property: "og:title", content: "Mefcold – Klimatyzacja domowa Oława" },
       {
         property: "og:description",
         content:
-          "Stacjonarny serwis klimatyzacji samochodowej we Wrocławiu. Nabijanie, odgrzybianie, diagnostyka, test szczelności.",
+          "Montaż i serwis klimatyzacji domowej w Oławie i okolicach. Profesjonalna instalacja, serwis i doradztwo.",
       },
     ],
   }),
 });
 
-const BRAND_NAME = "M&K";
-const BRAND_TAGLINE = "Serwis klimatyzacji samochodowej";
+const BRAND_NAME = "Mefcold";
+const BRAND_TAGLINE = "Klimatyzacja domowa i biurowa";
 
-const PHONE = "+48 537 800 037";
-const PHONE_HREF = "tel:+48537800037";
-const SMS_HREF = "sms:+48537800037";
+const PHONE = "+48 782 241 188";
+const PHONE_HREF = "tel:+48782241188";
+const SMS_HREF = "sms:+48782241188";
 
-const ADDRESS_SHORT = "Parking Kaufland, Sieradzka 7";
-const ADDRESS_FULL = "Parking Kaufland, Sieradzka 7, 50-568 Wrocław";
-const MAPS_HREF = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS_FULL)}`;
+const ADDRESS_SHORT = "ul. Kwiatowa 1, Marcinkowice";
+const ADDRESS_FULL = "ul. Kwiatowa 1, 55-200 Marcinkowice (okolice Oławy)";
+const MAPS_HREF = "https://www.google.com/maps/search/?api=1&query=50.987326,17.222511";
 
-const EMAIL = "kontakt@mk-serwis.pl";
+const EMAIL = "kontakt@mefcold.pl";
 const EMAIL_HREF = `mailto:${EMAIL}`;
 
-const HOURS = "Pn–Pt 8:00–18:00, Sob 9:00–14:00";
+const HOURS = "07:00–21:00, 7 dni w tygodniu";
 
 function Index() {
   return (
@@ -65,7 +64,6 @@ function Index() {
         <Hero />
         <Services />
         <Process />
-        <Pricing />
         <Why />
         <Area />
         <Contact />
@@ -104,9 +102,6 @@ function Header() {
           <a href="#uslugi" className="hover:text-accent transition-smooth">
             Usługi
           </a>
-          <a href="#cennik" className="hover:text-accent transition-smooth">
-            Cennik
-          </a>
           <a href="#jak" className="hover:text-accent transition-smooth">
             Jak to działa
           </a>
@@ -143,13 +138,6 @@ function Header() {
               Usługi
             </a>
             <a
-              href="#cennik"
-              onClick={() => setIsOpen(false)}
-              className="py-2 border-b border-border/50 hover:text-accent transition-smooth"
-            >
-              Cennik
-            </a>
-            <a
               href="#jak"
               onClick={() => setIsOpen(false)}
               className="py-2 border-b border-border/50 hover:text-accent transition-smooth"
@@ -181,66 +169,6 @@ function Header() {
     </header>
   );
 }
-function TiltVanImage() {
-  const [transform, setTransform] = useState(
-    "perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)",
-  );
-  const [isHovered, setIsHovered] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
-    const { left, top, width, height } = containerRef.current.getBoundingClientRect();
-    const x = (e.clientX - left) / width;
-    const y = (e.clientY - top) / height;
-
-    const rotateX = (y - 0.5) * -10; // Max 5 deg
-    const rotateY = (x - 0.5) * 10;
-
-    setTransform(
-      `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`,
-    );
-  };
-
-  const handleMouseEnter = () => setIsHovered(true);
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    setTransform("perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)");
-  };
-
-  return (
-    <div className="relative hidden lg:flex items-center justify-center w-full max-w-[650px] z-10 mx-auto">
-      <div
-        className={`absolute -inset-2 bg-gradient-to-tr from-brand-teal/40 to-brand-cyan/40 blur-3xl rounded-3xl transition-opacity duration-700 ease-out ${isHovered ? "opacity-100" : "opacity-40"}`}
-      />
-      <div
-        ref={containerRef}
-        onMouseMove={handleMouseMove}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        style={{
-          transform,
-          transition: isHovered
-            ? "transform 0.1s ease-out"
-            : "transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)",
-        }}
-        className="relative w-full aspect-[16/11] rounded-[2rem] overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,180,216,0.3)] ring-1 ring-white/10 ring-inset will-change-transform z-10"
-      >
-        <img
-          src={heroFront}
-          alt="Serwis klimatyzacji samochodowej M&K"
-          className={`w-full h-full object-cover object-[70%_70%] transition-transform duration-1000 ease-out ${isHovered ? "scale-105" : "scale-100"}`}
-          style={{ filter: "contrast(1.05) brightness(1.05) saturate(1.10)" }}
-          width={650}
-          height={446}
-        />
-        {/* Subtle vignette gradient instead of heavy mix-blend */}
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-deep/60 via-transparent to-transparent pointer-events-none" />
-        <div className="absolute inset-0 rounded-[2rem] ring-1 ring-white/20 ring-inset pointer-events-none" />
-      </div>
-    </div>
-  );
-}
 
 function Hero() {
   return (
@@ -264,14 +192,14 @@ function Hero() {
             <MapPin className="h-3.5 w-3.5" /> {ADDRESS_SHORT}
           </div>
           <h1 className="mt-6 text-4xl md:text-6xl font-bold tracking-tight leading-[1.05]">
-            Serwis klimatyzacji <span className="text-brand-cyan">stacjonarnie</span>
-            <span className="block">we Wrocławiu.</span>
+            Komfort w domu i biurze — <span className="text-brand-cyan">klimatyzacja</span>
+            <span className="block">w Oławie i okolicach.</span>
           </h1>
           <p className="mt-6 text-lg text-white/80">
-            Nabijanie czynnika, diagnostyka, ozonowanie i odgrzybianie
+            Montaż split i multi-split, serwis, dobór mocy i wycena na miejscu.
             <span className="hidden sm:inline">
               {" "}
-              — zapraszamy do naszego punktu. Szybko, profesjonalnie i w dobrej cenie.
+              Profesjonalnie, z gwarancją i wsparciem po instalacji.
             </span>
           </p>
           <div className="mt-9 flex flex-wrap justify-center gap-3">
@@ -279,20 +207,20 @@ function Hero() {
               href={PHONE_HREF}
               className="inline-flex items-center gap-2 rounded-full bg-gradient-accent px-7 py-3.5 font-semibold shadow-cool hover:shadow-glow transition-smooth"
             >
-              <Phone className="h-4 w-4" /> Umów wizytę
+              <Phone className="h-4 w-4" /> Zadzwoń po wycenę
             </a>
             <a
               href={MAPS_HREF}
               className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/5 px-7 py-3.5 font-semibold backdrop-blur hover:bg-white/10 transition-smooth"
             >
-              Nawiguj do nas <ArrowRight className="h-4 w-4" />
+              Nawiguj <ArrowRight className="h-4 w-4" />
             </a>
           </div>
           <dl className="mt-12 grid grid-cols-3 gap-6 w-full max-w-md">
             {[
-              { k: "10+", v: "lat doświadczenia" },
-              { k: "2 500+", v: "obsłużonych aut" },
-              { k: "24h", v: "czas reakcji" },
+              { k: "5.0", v: "ocena klientów" },
+              { k: "100%", v: "doradztwo i montaż" },
+              { k: "7 dni", v: "w tygodniu" },
             ].map((s) => (
               <div key={s.v} className="text-center">
                 <dt className="text-2xl md:text-3xl font-bold text-brand-cyan">{s.k}</dt>
@@ -309,34 +237,34 @@ function Hero() {
 function Services() {
   const items = [
     {
-      icon: Gauge,
-      title: "Nabijanie klimatyzacji",
-      desc: "Pełna obsługa czynnika R134a i R1234yf z odzyskiem, próżnią i kontrolą szczelności.",
+      icon: Home,
+      title: "Montaż klimatyzacji domowej",
+      desc: "Instalacja split i multi-split w domach — czysto, sprawnie i zgodnie ze sztuką.",
     },
     {
-      icon: Droplets,
-      title: "Odgrzybianie i ozonowanie",
-      desc: "Likwidacja nieprzyjemnych zapachów, bakterii i grzybów z układu klimatyzacji.",
+      icon: Wind,
+      title: "Serwis i przegląd",
+      desc: "Konserwacja, czyszczenie, uzupełnianie czynnika i kontrola działania układu.",
+    },
+    {
+      icon: Thermometer,
+      title: "Dobór urządzeń i wycena",
+      desc: "Doradzimy moc i model pod metraż, układ pomieszczeń i budżet.",
+    },
+    {
+      icon: Building2,
+      title: "Klimatyzacja biurowa",
+      desc: "Montaż w biurach, sklepach i lokalach usługowych — komfort dla pracowników i klientów.",
     },
     {
       icon: Wrench,
-      title: "Diagnostyka i naprawa",
-      desc: "Wykrywanie wycieków, wymiana sprężarek, osuszaczy, czujników i przewodów.",
-    },
-    {
-      icon: Sparkles,
-      title: "Wymiana filtra kabinowego",
-      desc: "Czyste powietrze w kabinie — dobierzemy i wymienimy filtr pod Twój model auta.",
-    },
-    {
-      icon: Car,
-      title: "Przegląd sezonowy",
-      desc: "Kompleksowy check-up przed sezonem letnim. Bądź pewien, że nie zawiedzie.",
+      title: "Naprawa awarii",
+      desc: "Szybka diagnostyka i usunięcie usterek — przywracamy chłodzenie bez przestojów.",
     },
     {
       icon: ShieldCheck,
-      title: "Gwarancja jakości",
-      desc: "Profesjonalny sprzęt, oryginalne czynniki, faktura VAT i pełna gwarancja.",
+      title: "Gwarancja i faktura",
+      desc: "Przejrzyste warunki, dokumentacja montażu i wsparcie po uruchomieniu.",
     },
   ];
 
@@ -401,8 +329,8 @@ function Services() {
       <div className="mx-auto max-w-7xl px-6">
         <SectionHeader
           eyebrow="Usługi"
-          title="Wszystko, czego potrzebuje Twoja klima"
-          subtitle={`Pracujemy stacjonarnie we Wrocławiu. Zapraszamy: ${ADDRESS_FULL}.`}
+          title="Klimatyzacja dopasowana do Twoich potrzeb"
+          subtitle={`Montaż i serwis w Oławie i okolicach. Siedziba: ${ADDRESS_FULL}.`}
         />
 
         {/* Mobile Swipe Carousel */}
@@ -492,19 +420,19 @@ function Process() {
   const steps = [
     {
       n: "01",
-      t: "Zadzwoń i umów termin",
-      d: "Krótko ustalimy zakres usługi i zaproponujemy dogodną godzinę.",
+      t: "Kontakt i wycena",
+      d: "Opowiesz o pomieszczeniu — zaproponujemy rozwiązanie i orientacyjną cenę.",
     },
-    { n: "02", t: "Podjedź do warsztatu", d: `Jesteśmy we Wrocławiu: ${ADDRESS_FULL}.` },
+    { n: "02", t: "Wizyta i pomiar", d: "Na miejscu ocenimy układ, trasę instalacji i dobierzemy urządzenia." },
     {
       n: "03",
-      t: "Serwis na miejscu",
-      d: "Diagnostyka, nabijanie, ozonowanie i test szczelności — sprawnie i konkretnie.",
+      t: "Montaż i uruchomienie",
+      d: "Profesjonalny montaż split/multi-split, próba szczelności i szkolenie z obsługi.",
     },
     {
       n: "04",
-      t: "Chłodzi jak nowa",
-      d: "Odbierasz auto gotowe do sezonu. Komfort jazdy w komplecie.",
+      t: "Serwis po montażu",
+      d: "Jesteśmy dostępni przy przeglądach, serwisie i ewentualnych naprawach.",
     },
   ];
 
@@ -659,260 +587,23 @@ function Process() {
   );
 }
 
-function Pricing() {
-  const plans = [
-    {
-      name: "Nabijanie R134a",
-      price: "199 zł",
-      tag: "Najczęściej wybierane",
-      features: [
-        "Odzysk czynnika",
-        "Próżnia i test szczelności",
-        "Nabicie + olej + kontrast UV",
-        "Test wydajności układu",
-      ],
-      highlight: false,
-    },
-    {
-      name: "Pakiet Premium",
-      price: "299 zł",
-      tag: "Najlepszy stosunek jakości do ceny",
-      features: [
-        "Pełne nabijanie R134a",
-        "Ozonowanie kabiny (45 min)",
-        "Wymiana filtra kabinowego*",
-        "Przegląd układu",
-      ],
-      highlight: true,
-    },
-    {
-      name: "Nabijanie R1234yf",
-      price: "od 449 zł",
-      tag: "Nowsze pojazdy",
-      features: ["Czynnik ekologiczny", "Odzysk i próżnia", "Olej PAG/POE", "Test szczelności"],
-      highlight: false,
-    },
-  ];
-
-  const length = plans.length;
-  // Centering the Premium Pack (index 2) by default
-  const [index, setIndex] = useState(2);
-  const [transitionEnabled, setTransitionEnabled] = useState(true);
-  const touchStartRef = useRef<number | null>(null);
-
-  const handleNext = () => {
-    if (length !== 0) {
-      if (index >= length + 1) return;
-      setTransitionEnabled(true);
-      setIndex((prev) => prev + 1);
-    }
-  };
-
-  const handlePrev = () => {
-    if (length !== 0) {
-      if (index <= 0) return;
-      setTransitionEnabled(true);
-      setIndex((prev) => prev - 1);
-    }
-  };
-
-  const handleTransitionEnd = () => {
-    if (length !== 0) {
-      if (index >= length + 1) {
-        setTransitionEnabled(false);
-        setIndex(1);
-        return;
-      }
-      if (index <= 0) {
-        setTransitionEnabled(false);
-        setIndex(length);
-        return;
-      }
-    }
-  };
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartRef.current = e.touches[0]?.clientX ?? null;
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartRef.current === null) return;
-    const diff = e.changedTouches[0]?.clientX - touchStartRef.current;
-    touchStartRef.current = null;
-    if (diff && Math.abs(diff) >= 40) {
-      if (diff < 0) {
-        handleNext();
-      } else {
-        handlePrev();
-      }
-    }
-  };
-
-  const extendedPlans = [plans[plans.length - 1], ...plans, plans[0]];
-
-  return (
-    <section id="cennik" className="py-16 md:py-32 overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6">
-        <SectionHeader
-          eyebrow="Cennik"
-          title="Uczciwe ceny, bez ukrytych kosztów"
-          subtitle="Wybrane usługi. Pełen cennik podajemy telefonicznie — wycena zależy od modelu auta."
-        />
-
-        {/* Mobile Swipe Carousel */}
-        <div className="mt-16 md:hidden">
-          <div
-            className="overflow-hidden touch-pan-y"
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-          >
-            <div
-              className="flex transition-transform"
-              style={{
-                transform: `translateX(-${index * 85 - 7.5}%)`,
-                transition: transitionEnabled
-                  ? "transform 400ms cubic-bezier(0.16, 1, 0.3, 1)"
-                  : "none",
-              }}
-              onTransitionEnd={handleTransitionEnd}
-            >
-              {extendedPlans.map((p, idx) => {
-                const isCardActive = idx === index;
-                return (
-                  <div key={idx} className="w-[85%] flex-shrink-0 px-2.5">
-                    <div
-                      className={`relative rounded-3xl p-8 h-full flex flex-col justify-between text-center transition-all duration-500 ease-out origin-center ${
-                        isCardActive
-                          ? "scale-100 opacity-100 shadow-cool animate-none"
-                          : "scale-[0.94] opacity-50 blur-[0.5px]"
-                      } ${p.highlight ? "bg-gradient-hero text-primary-foreground" : "bg-card border border-border shadow-card"}`}
-                    >
-                      {!p.highlight && (
-                        <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_20%_10%,hsl(var(--accent)/0.12),transparent_55%)]" />
-                      )}
-                      <div className="flex flex-col items-center">
-                        <div
-                          className={`text-xs uppercase tracking-widest font-semibold ${p.highlight ? "text-brand-cyan" : "text-accent"}`}
-                        >
-                          {p.tag}
-                        </div>
-                        <h3 className="mt-3 text-xl font-bold">{p.name}</h3>
-                        <div className="mt-5 text-4xl font-bold">{p.price}</div>
-                        <ul className="mt-7 space-y-3 flex flex-col items-start text-left w-fit mx-auto">
-                          {p.features.map((f) => (
-                            <li key={f} className="flex items-start gap-2.5 text-sm">
-                              <CheckCircle2
-                                className={`h-5 w-5 mt-0.5 flex-shrink-0 ${p.highlight ? "text-brand-cyan" : "text-accent"}`}
-                              />
-                              <span
-                                className={p.highlight ? "text-white/85" : "text-muted-foreground"}
-                              >
-                                {f}
-                              </span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      <a
-                        href={PHONE_HREF}
-                        className={`mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold transition-smooth ${p.highlight ? "bg-white text-brand-deep hover:bg-brand-cyan animate-pulse" : "bg-gradient-accent text-primary-foreground hover:shadow-glow"}`}
-                      >
-                        Umów wizytę <ArrowRight className="h-4 w-4" />
-                      </a>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Dots Indicators */}
-          <div className="flex justify-center gap-2 mt-8">
-            {plans.map((_, idx) => {
-              const isActive =
-                index === idx + 1 ||
-                (index === 0 && idx === plans.length - 1) ||
-                (index === plans.length + 1 && idx === 0);
-              return (
-                <button
-                  key={idx}
-                  onClick={() => {
-                    setTransitionEnabled(true);
-                    setIndex(idx + 1);
-                  }}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
-                    isActive ? "w-8 bg-accent" : "w-1.5 bg-muted-foreground/30"
-                  }`}
-                  aria-label={`Go to slide ${idx + 1}`}
-                />
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Desktop/Tablet Grid View */}
-        <div className="hidden md:grid md:grid-cols-3 gap-6 mt-16 text-left">
-          {plans.map((p) => (
-            <div
-              key={p.name}
-              className={`group relative rounded-3xl p-8 transition-spring hover:-translate-y-1 overflow-hidden ${p.highlight ? "bg-gradient-hero text-primary-foreground shadow-cool" : "bg-card/85 border border-border/70 backdrop-blur-sm shadow-card hover:shadow-cool"}`}
-            >
-              {!p.highlight && (
-                <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(circle_at_20%_10%,hsl(var(--accent)/0.12),transparent_55%)]" />
-              )}
-              <div
-                className={`text-xs uppercase tracking-widest font-semibold ${p.highlight ? "text-brand-cyan" : "text-accent"}`}
-              >
-                {p.tag}
-              </div>
-              <h3 className="mt-3 text-xl font-bold">{p.name}</h3>
-              <div className="mt-5 text-4xl font-bold">{p.price}</div>
-              <ul className="mt-7 space-y-3">
-                {p.features.map((f) => (
-                  <li key={f} className="flex items-start gap-3 text-sm">
-                    <CheckCircle2
-                      className={`h-5 w-5 mt-0.5 flex-shrink-0 ${p.highlight ? "text-brand-cyan" : "text-accent"}`}
-                    />
-                    <span className={p.highlight ? "text-white/85" : "text-muted-foreground"}>
-                      {f}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              <a
-                href={PHONE_HREF}
-                className={`mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold transition-smooth ${p.highlight ? "bg-white text-brand-deep hover:bg-brand-cyan" : "bg-gradient-accent text-primary-foreground hover:shadow-glow"}`}
-              >
-                Umów wizytę <ArrowRight className="h-4 w-4" />
-              </a>
-            </div>
-          ))}
-        </div>
-        <p className="mt-6 text-xs text-muted-foreground text-center">
-          * Filtr kabinowy w cenie do 50 zł — droższe filtry wg cennika.
-        </p>
-      </div>
-    </section>
-  );
-}
-
 function Why() {
   const reasons = [
-    { icon: MapPin, t: "Dogodna lokalizacja", d: `Parking Kaufland — ${ADDRESS_FULL}.` },
+    { icon: MapPin, t: "Oława i okolice", d: `Montaż u klienta — baza: ${ADDRESS_SHORT}.` },
     {
       icon: Clock,
-      t: "Szybka obsługa",
-      d: "Sprawny serwis i konkretna diagnostyka bez zbędnego czekania.",
+      t: "Elastyczne godziny",
+      d: HOURS,
     },
     {
       icon: ShieldCheck,
-      t: "Profesjonalny sprzęt",
-      d: "Stacje markowe, oryginalne czynniki i pełna kontrola układu.",
+      t: "Profesjonalny montaż",
+      d: "Sprawdzony sprzęt, dokumentacja i gwarancja na wykonane prace.",
     },
     {
-      icon: Sparkles,
-      t: "Czyste powietrze w kabinie",
-      d: "Ozonowanie i odgrzybianie — komfort i higiena na co dzień.",
+      icon: Snowflake,
+      t: "Doradztwo na miejscu",
+      d: "Dobierzemy moc i układ — bez przepłacania za zbędny metraż.",
     },
   ];
 
@@ -978,8 +669,8 @@ function Why() {
           <div>
             <SectionHeader
               eyebrow="Dlaczego my"
-              title="Wiemy, jak schłodzić każde auto"
-              subtitle="Nie jesteśmy kolejnym warsztatem. Jesteśmy zespołem, który dojeżdża, doradza i robi robotę porządnie."
+              title="Komfort, który zostaje na lata"
+              subtitle="Mefcold to montaż i serwis klimatyzacji domowej — konkretnie, uczciwie i z pełnym wsparciem po instalacji."
               align="left"
             />
           </div>
@@ -1075,8 +766,8 @@ function Area() {
           <SectionHeader
             light
             eyebrow="Lokalizacja"
-            title="Podjedź do nas — łatwy dojazd"
-            subtitle={`Zapraszamy stacjonarnie: ${ADDRESS_FULL}.`}
+            title="Oława i okolice — montaż u Ciebie"
+            subtitle={`Baza firmy: ${ADDRESS_FULL}. Dojeżdżamy na montaż i serwis.`}
             align="left"
           />
           <ul className="mt-8 space-y-3 text-white/80">
@@ -1113,8 +804,8 @@ function Area() {
         </div>
         <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-cool aspect-[4/3]">
           <iframe
-            title="Mapa — M&K Wrocław"
-            src="https://www.google.com/maps?q=51.0925101,17.032424&hl=pl&z=16&output=embed"
+            title="Mapa — Mefcold Oława"
+            src="https://www.google.com/maps?q=50.987326,17.222511&hl=pl&z=14&output=embed"
             width="100%"
             height="100%"
             style={{ border: 0 }}
@@ -1219,7 +910,7 @@ function Contact() {
       <div className="mx-auto max-w-5xl px-6 text-center">
         <SectionHeader
           eyebrow="Kontakt"
-          title="Umów termin lub podjedź do nas"
+          title="Zadzwoń po wycenę"
           subtitle={`Zadzwoń albo włącz nawigację: ${ADDRESS_SHORT}.`}
         />
 
@@ -1329,7 +1020,7 @@ function Contact() {
           href={PHONE_HREF}
           className="mt-12 inline-flex items-center gap-2 rounded-full bg-gradient-accent text-primary-foreground px-9 py-4 font-semibold shadow-cool hover:shadow-glow transition-smooth"
         >
-          <Phone className="h-5 w-5" /> Umów wizytę teraz
+          <Phone className="h-5 w-5" /> Zadzwoń po wycenę
         </a>
       </div>
     </section>
@@ -1344,7 +1035,7 @@ function Footer() {
           <img src={logo} alt="" className="h-11 w-11 object-contain" width={44} height={44} />
           <div>
             <div className="font-semibold">{BRAND_NAME}</div>
-            <div className="text-xs text-white/60">{BRAND_TAGLINE} · Wrocław</div>
+            <div className="text-xs text-white/60">{BRAND_TAGLINE} · Oława</div>
           </div>
         </div>
         <div className="text-xs text-white/50">

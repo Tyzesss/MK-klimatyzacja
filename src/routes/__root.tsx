@@ -10,7 +10,7 @@ import {
 
 import appCss from "../styles.css?url";
 import logoUrl from "../assets/logo.png";
-import ogImageUrl from "../assets/van.jpg";
+import ogImageUrl from "../assets/hero.jpg";
 
 function NotFoundComponent() {
   return (
@@ -74,26 +74,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "M&K – Serwis klimatyzacji samochodowej Wrocław" },
+      { title: "Mefcold – Klimatyzacja domowa Oława | Montaż i serwis" },
       {
         name: "description",
         content:
-          "Stacjonarny serwis klimatyzacji samochodowej we Wrocławiu. Nabijanie, odgrzybianie, ozonowanie, diagnostyka nieszczelności i test szczelności.",
+          "Montaż i serwis klimatyzacji domowej oraz biurowej w Oławie i okolicach. Dobór urządzeń, wycena, instalacja split i multi-split.",
       },
-      { name: "author", content: "M&K" },
-      { property: "og:title", content: "M&K – Serwis klimatyzacji samochodowej Wrocław" },
+      { name: "author", content: "Mefcold" },
+      { property: "og:title", content: "Mefcold – Klimatyzacja domowa Oława" },
       {
         property: "og:description",
         content:
-          "Stacjonarny serwis klimatyzacji samochodowej we Wrocławiu. Nabijanie, odgrzybianie, ozonowanie, diagnostyka nieszczelności i test szczelności.",
+          "Montaż i serwis klimatyzacji domowej w Oławie i okolicach. Profesjonalna instalacja, serwis i doradztwo.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "M&K – Serwis klimatyzacji samochodowej Wrocław" },
+      { name: "twitter:title", content: "Mefcold – Klimatyzacja domowa Oława" },
       {
         name: "twitter:description",
         content:
-          "Stacjonarny serwis klimatyzacji samochodowej we Wrocławiu. Nabijanie, odgrzybianie, ozonowanie, diagnostyka i test szczelności.",
+          "Montaż i serwis klimatyzacji domowej w Oławie i okolicach. Profesjonalna instalacja i serwis.",
       },
       { property: "og:image", content: ogImageUrl },
       { name: "twitter:image", content: ogImageUrl },
