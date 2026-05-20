@@ -250,13 +250,6 @@ function Hero() {
         className="absolute inset-0 opacity-50"
         style={{ background: "var(--gradient-radial)" }}
       />
-      <img
-        src={heroBg}
-        alt=""
-        className="absolute inset-0 h-full w-full object-cover opacity-30 mix-blend-screen"
-        width={1600}
-        height={1024}
-      />
       <div className="relative mx-auto max-w-7xl px-6 py-24 md:py-32 grid lg:grid-cols-2 gap-12 items-center">
         <div className="animate-fade-up flex flex-col items-center lg:items-start text-center lg:text-left">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold tracking-wider uppercase backdrop-blur">
