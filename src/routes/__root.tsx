@@ -74,15 +74,27 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Profesor Chłodek – Mobilny Serwis Klimatyzacji Samochodowej" },
-      { name: "description", content: "Mobilny serwis klimatyzacji samochodowej we Wrocławiu i okolicach. Dojazd do klienta, nabijanie, odgrzybianie, ozonowanie, diagnostyka nieszczelności." },
-      { name: "author", content: "Profesor Chłodek" },
-      { property: "og:title", content: "Profesor Chłodek – Mobilny Serwis Klimatyzacji" },
-      { property: "og:description", content: "Mobilny serwis klimatyzacji samochodowej we Wrocławiu i okolicach. Dojazd do klienta, nabijanie, odgrzybianie, ozonowanie, diagnostyka nieszczelności." },
+      { title: "M&K – Serwis klimatyzacji samochodowej Wrocław" },
+      {
+        name: "description",
+        content:
+          "Stacjonarny serwis klimatyzacji samochodowej we Wrocławiu. Nabijanie, odgrzybianie, ozonowanie, diagnostyka nieszczelności i test szczelności.",
+      },
+      { name: "author", content: "M&K" },
+      { property: "og:title", content: "M&K – Serwis klimatyzacji samochodowej Wrocław" },
+      {
+        property: "og:description",
+        content:
+          "Stacjonarny serwis klimatyzacji samochodowej we Wrocławiu. Nabijanie, odgrzybianie, ozonowanie, diagnostyka nieszczelności i test szczelności.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Profesor Chłodek – Mobilny Serwis Klimatyzacji" },
-      { name: "twitter:description", content: "Mobilny serwis klimatyzacji samochodowej we Wrocławiu i okolicach. Dojazd do klienta, nabijanie, odgrzybianie, ozonowanie, diagnostyka nieszczelności." },
+      { name: "twitter:title", content: "M&K – Serwis klimatyzacji samochodowej Wrocław" },
+      {
+        name: "twitter:description",
+        content:
+          "Stacjonarny serwis klimatyzacji samochodowej we Wrocławiu. Nabijanie, odgrzybianie, ozonowanie, diagnostyka i test szczelności.",
+      },
       { property: "og:image", content: ogImageUrl },
       { name: "twitter:image", content: ogImageUrl },
     ],
