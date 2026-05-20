@@ -19,7 +19,6 @@ import {
 } from "lucide-react";
 import logo from "@/assets/logo.png";
 import heroBg from "@/assets/hero.jpg";
-import heroFront from "@/assets/hero.webp";
 import { useState, useEffect, useRef } from "react";
 
 export const Route = createFileRoute("/")({
@@ -246,23 +245,36 @@ function TiltVanImage() {
 function Hero() {
   return (
     <section id="top" className="relative overflow-hidden bg-gradient-hero text-primary-foreground">
+      <img
+        src={heroBg}
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full object-cover opacity-20"
+        width={1600}
+        height={1024}
+      />
       <div
         className="absolute inset-0 opacity-50"
         style={{ background: "var(--gradient-radial)" }}
       />
-      <div className="relative mx-auto max-w-7xl px-6 py-24 md:py-32 grid lg:grid-cols-2 gap-12 items-center">
-        <div className="animate-fade-up flex flex-col items-center lg:items-start text-center lg:text-left">
+      <div className="absolute inset-0 bg-gradient-to-b from-brand-deep/55 via-brand-deep/15 to-brand-deep/50" />
+      <div className="relative mx-auto max-w-7xl px-6 py-24 md:py-32">
+        <div className="animate-fade-up flex flex-col items-center text-center max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold tracking-wider uppercase backdrop-blur">
             <MapPin className="h-3.5 w-3.5" /> {ADDRESS_SHORT}
           </div>
           <h1 className="mt-6 text-4xl md:text-6xl font-bold tracking-tight leading-[1.05]">
-            Serwis klimatyzacji <span className="text-brand-cyan">stacjonarnie</span> we Wrocławiu.
+            Serwis klimatyzacji <span className="text-brand-cyan">stacjonarnie</span>
+            <span className="block">we Wrocławiu.</span>
           </h1>
-          <p className="mt-6 text-lg text-white/80 max-w-xl mx-auto lg:mx-0">
-            Nabijanie czynnika, diagnostyka, ozonowanie i odgrzybianie — zapraszamy do naszego
-            punktu. Szybko, profesjonalnie i w dobrej cenie.
+          <p className="mt-6 text-lg text-white/80">
+            Nabijanie czynnika, diagnostyka, ozonowanie i odgrzybianie
+            <span className="hidden sm:inline">
+              {" "}
+              — zapraszamy do naszego punktu. Szybko, profesjonalnie i w dobrej cenie.
+            </span>
           </p>
-          <div className="mt-9 flex flex-wrap justify-center lg:justify-start gap-3">
+          <div className="mt-9 flex flex-wrap justify-center gap-3">
             <a
               href={PHONE_HREF}
               className="inline-flex items-center gap-2 rounded-full bg-gradient-accent px-7 py-3.5 font-semibold shadow-cool hover:shadow-glow transition-smooth"
@@ -276,20 +288,19 @@ function Hero() {
               Nawiguj do nas <ArrowRight className="h-4 w-4" />
             </a>
           </div>
-          <dl className="mt-12 grid grid-cols-3 gap-6 max-w-md mx-auto lg:mx-0 w-full">
+          <dl className="mt-12 grid grid-cols-3 gap-6 w-full max-w-md">
             {[
               { k: "10+", v: "lat doświadczenia" },
               { k: "2 500+", v: "obsłużonych aut" },
               { k: "24h", v: "czas reakcji" },
             ].map((s) => (
-              <div key={s.v} className="text-center lg:text-left">
+              <div key={s.v} className="text-center">
                 <dt className="text-2xl md:text-3xl font-bold text-brand-cyan">{s.k}</dt>
                 <dd className="text-xs text-white/70 mt-1">{s.v}</dd>
               </div>
             ))}
           </dl>
         </div>
-        <TiltVanImage />
       </div>
     </section>
   );
